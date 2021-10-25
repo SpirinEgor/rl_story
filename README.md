@@ -73,3 +73,10 @@ All examples obtained from `checkpoint-20` in [`dainty-frog-2` run](https://wand
     <br>
     <img src="https://github.com/SpirinEgor/rl_story/blob/master/examples/example-4.gif" alt="Example 4"/>
 </p>
+
+## Future plans
+
+Possible future work:
+- Improve code base by adding metrics, i.e. repetition rate
+- Benchmark other RL algorithms, e.g. [DDQN](https://arxiv.org/abs/1509.06461)
+- Research multi-agent solution

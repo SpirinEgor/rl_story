@@ -10,12 +10,13 @@ from ray.rllib.agents import ppo
 from tqdm.auto import trange
 
 from custom_dungeon import CustomDungeon
-from src.utils import fix_everything, build_ppo_config
+from src.utils import build_ppo_config
 
 
 def evaluate(agent, config: Dict, output_dir: str) -> str:
     env = CustomDungeon(**config["ppo"]["env_config"])
-    env.seed(config["seed"])
+    if "seed" in config:
+        env.seed(config["seed"])
     obs = env.reset()
 
     makedirs(output_dir, exist_ok=True)
@@ -43,7 +44,8 @@ def run_evaluation(config_path: str, checkpoint_path: str, output_path: str, n_s
     config = OmegaConf.load(config_path)
     config = OmegaConf.to_container(config, resolve=True)
 
-    fix_everything(config["seed"])
+    # To see different environment samples
+    del config["seed"]
 
     ray.shutdown()
     ray.init(ignore_reinit_error=True)

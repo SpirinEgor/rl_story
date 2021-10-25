@@ -11,6 +11,7 @@ result_dir: results
 ppo:
     seed: 7
     num_gpus: 0
+    num_workers: 14
 
     framework: torch
 
@@ -23,6 +24,7 @@ ppo:
         max_room_xy: 10
         observation_size: 11
         vision_radius: 5
+        reward_for_new: 1
 
     model:
         conv_filters:
