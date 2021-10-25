@@ -7,6 +7,7 @@ import ray
 from omegaconf import OmegaConf
 from ray import tune
 from ray.rllib.agents import ppo
+from tqdm.auto import trange
 
 from custom_dungeon import CustomDungeon
 from src.utils import fix_everything, build_ppo_config
@@ -38,7 +39,7 @@ def evaluate(agent, config: Dict, output_dir: str) -> str:
     return result_gif
 
 
-def run_evaluation(config_path: str, checkpoint_path: str, output_path: str):
+def run_evaluation(config_path: str, checkpoint_path: str, output_path: str, n_samples: int = 5):
     config = OmegaConf.load(config_path)
     config = OmegaConf.to_container(config, resolve=True)
 
@@ -52,7 +53,8 @@ def run_evaluation(config_path: str, checkpoint_path: str, output_path: str):
     agent = ppo.PPOTrainer(train_config)
     agent.restore(checkpoint_path)
 
-    evaluate(agent, config, output_path)
+    for i in trange(n_samples, desc="Evaluation"):
+        evaluate(agent, config, join(output_path, f"run-{i + 1}"))
 
 
 if __name__ == "__main__":
@@ -60,6 +62,7 @@ if __name__ == "__main__":
     __arg_parser.add_argument("-c", "--config", required=True, help="Path to YAML config")
     __arg_parser.add_argument("-m", "--model", required=True, help="Path to model's checkpoint")
     __arg_parser.add_argument("-o", "--output", required=True, help="Path to output folder")
+    __arg_parser.add_argument("--n-samples", type=int, default=5, help="Number of samples to generate")
 
     __args = __arg_parser.parse_args()
-    run_evaluation(__args.config, __args.model, __args.output)
+    run_evaluation(__args.config, __args.model, __args.output, __args.n_samples)
