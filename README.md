@@ -17,7 +17,7 @@ It is a classical RL approach that is often chosen as baseline.
 Reward for this task is a combination of explored cells and walking to a new cell:
 
 <p align="center">
-    <img src="https://latex.codecogs.com/png.latex?\inline&space;R&space;=&space;\frac{\text{explored}}{\text{viewed&space;cells}}&space;&plus;&space;1_{\text{is&space;new&space;cell}}," title="R = \frac{\text{explored}}{\text{viewed cells}} + 1_{\text{is new cell}}," />
+<img src="https://latex.codecogs.com/png.latex?\dpi{100}&space;\fn_phv&space;R&space;=&space;\frac{\text{explored}}{\text{viewed&space;cells}}&space;&plus;&space;1_{\text{is&space;new&space;cell}}," title="R = \frac{\text{explored}}{\text{viewed cells}} + 1_{\text{is new cell}}," />
 </p>
 
 where `explored` is a number of new explored cells,
