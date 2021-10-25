@@ -1,0 +1,41 @@
+seed: 7
+log_offline: false
+
+n_iterations: 500
+eval_step: 50
+checkpoint_step: 50
+
+checkpoint_dir: checkpoints
+result_dir: results
+
+ppo:
+    seed: 7
+    num_gpus: 1
+
+    framework: torch
+
+    env: Dungeon
+    env_config:
+        width: 20
+        height: 20
+        max_rooms: 3
+        min_room_xy: 5
+        max_room_xy: 10
+        observation_size: 11
+        vision_radius: 5
+
+    model:
+        conv_filters:
+            [
+                [16, (3, 3), 2],
+                [32, (3, 3), 2],
+                [32, (3, 3), 1],
+            ]
+        post_fcnet_hiddens: [32]
+        post_fcnet_activation: relu
+        vf_share_layers: false
+
+    rollout_fragment_length: 100
+    entropy_coeff: 0.1
+    lambda: 0.95
+    vf_loss_coeff: 1.0
