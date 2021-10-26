@@ -60,6 +60,10 @@ def train(config_path: str):
 
     epoch_loop.close()
 
+    agent.save(checkpoint_dir)
+    result_gif = evaluate(agent, config, join(result_dir, f"step-{config['n_iterations']}"))
+    wandb_run.log({"val/gif": Video(result_gif, fps=30, format="gif")}, step=config["n_iterations"])
+
 
 if __name__ == "__main__":
     __arg_parser = ArgumentParser()
