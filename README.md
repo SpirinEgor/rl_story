@@ -60,7 +60,7 @@ PYTHONPAHT="." python src/evaluate.py $PATH_TO_YAML $PATH_TO_CHECKPOINT $PATH_TO
 ## Examples
 
 Train logs are stored in [WandB project](https://wandb.ai/voudy/RL-vacuum).
-All examples obtained from `checkpoint-20` in [`dainty-frog-2` run](https://wandb.ai/voudy/RL-vacuum/runs/1o8b1ott).
+All examples obtained from `checkpoint-450` in [`fearless-leaf-6` run](https://wandb.ai/voudy/RL-vacuum/runs/1gxird0w).
 
 <p align="center">
     <img src="https://github.com/SpirinEgor/rl_story/blob/master/examples/example-0.gif" alt="Example 0"/>
